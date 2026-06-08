@@ -1,0 +1,92 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "code": "SP001",
+      "name": "Tinh Chất Dưỡng Da Collagen",
+      "category": "Chăm sóc da",
+      "price": 450000,
+      "stock": 50,
+      "brand": "SkinCare Pro",
+      "description": "Tinh chất giúp tăng độ đàn hồi và dưỡng ẩm cho da.",
+      "image": "https://via.placeholder.com/300x300?text=Collagen+Serum"
+    },
+    {
+      "id": 2,
+      "code": "SP002",
+      "name": "Kem Chống Nắng SPF50+",
+      "category": "Chăm sóc da",
+      "price": 320000,
+      "stock": 80,
+      "brand": "SunCare",
+      "description": "Bảo vệ da khỏi tia UV với SPF50+ PA++++.",
+      "image": "https://via.placeholder.com/300x300?text=Sun+Cream"
+    },
+    {
+      "id": 3,
+      "code": "SP003",
+      "name": "Mặt Nạ Collagen",
+      "category": "Mặt nạ",
+      "price": 120000,
+      "stock": 120,
+      "brand": "Beauty Mask",
+      "description": "Cấp ẩm và làm sáng da tức thì.",
+      "image": "https://via.placeholder.com/300x300?text=Mask"
+    },
+    {
+      "id": 4,
+      "code": "SP004",
+      "name": "Sữa Rửa Mặt Trà Xanh",
+      "category": "Làm sạch",
+      "price": 180000,
+      "stock": 70,
+      "brand": "Nature Spa",
+      "description": "Làm sạch sâu, kiểm soát dầu nhờn.",
+      "image": "https://via.placeholder.com/300x300?text=Cleanser"
+    },
+    {
+      "id": 5,
+      "code": "SP005",
+      "name": "Nước Hoa Hồng Hoa Hồng",
+      "category": "Chăm sóc da",
+      "price": 250000,
+      "stock": 60,
+      "brand": "Rose Beauty",
+      "description": "Cân bằng độ pH và se khít lỗ chân lông.",
+      "image": "https://via.placeholder.com/300x300?text=Toner"
+    },
+    {
+      "id": 6,
+      "code": "SP006",
+      "name": "Kem Dưỡng Trắng Da Ban Đêm",
+      "category": "Dưỡng da",
+      "price": 520000,
+      "stock": 40,
+      "brand": "White Skin",
+      "description": "Hỗ trợ làm sáng và tái tạo làn da khi ngủ.",
+      "image": "https://via.placeholder.com/300x300?text=Night+Cream"
+    },
+    {
+      "id": 7,
+      "code": "SP007",
+      "name": "Tinh Dầu Massage Lavender",
+      "category": "Massage",
+      "price": 290000,
+      "stock": 35,
+      "brand": "Relax Spa",
+      "description": "Giúp thư giãn cơ thể và giảm căng thẳng.",
+      "image": "https://via.placeholder.com/300x300?text=Massage+Oil"
+    },
+    {
+      "id": 8,
+      "code": "SP008",
+      "name": "Muối Tắm Thảo Dược",
+      "category": "Body Care",
+      "price": 210000,
+      "stock": 90,
+      "brand": "Herbal Spa",
+      "description": "Làm sạch và thư giãn cơ thể.",
+      "image": "https://via.placeholder.com/300x300?text=Bath+Salt"
+    }
+  ]
+}
