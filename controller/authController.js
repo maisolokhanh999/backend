@@ -1,6 +1,8 @@
 import User from "../Moder/User.js";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
+import Product from "../Moder/products.js";
+import Category from "../Moder/categories.js";
 
 export const register = async (req, res) => {
   try {
@@ -20,6 +22,7 @@ export const register = async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      apiKey: crypto.randomUUID(),
     });
 
     res.status(201).json({
@@ -55,16 +58,41 @@ export const login = async (req, res) => {
         message: "Sai mật khẩu",
       });
     }
-
-    const apiKey = crypto.randomUUID();
-
-    user.apiKey = apiKey;
-
-    await user.save();
+    ;
 
     res.json({
       message: "Đăng nhập thành công",
-      apiKey,
+      apiKey: user.apiKey,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+export const createProduct = async (req, res) => {
+  try {
+    const product = await Product.create(req.body);
+
+    res.status(201).json({
+      message: "Thêm sản phẩm thành công",
+      data: product,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+
+export const createCategory = async (req, res) => {
+  try {
+    const category = await Category.create(req.body);
+
+    res.status(201).json({
+      message: "Thêm danh mục thành công",
+      data: category,
     });
   } catch (error) {
     res.status(500).json({

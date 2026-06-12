@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
+const cartSchema = new mongoose.Schema(
   {
-    
     username: {
       type: String,
       required: true,
@@ -13,18 +12,18 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
+    
     email: {
       type: String,
       required: true,
       unique: true,
     },
 
+
     apiKey: {
       type: String,
       default: "",
     },
-
   },
   {
     timestamps: true,
