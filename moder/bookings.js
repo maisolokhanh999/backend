@@ -1,33 +1,30 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
+const bookingSchema = new mongoose.Schema(
   {
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-
-    password: {
-      type: String,
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
-    
-    email: {
-      type: String,
+
+    serviceId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Service",
       required: true,
-      unique: true,
     },
 
+    date: {
+      type: Date,
+      required: true,
+    },
 
-    apiKey: {
+    status: {
       type: String,
-      default: "",
+      default: "pending",
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model("Booking", bookingSchema);
