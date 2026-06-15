@@ -4,8 +4,9 @@ import crypto from "crypto";
 import Product from "../Moder/products.js";
 import Category from "../Moder/categories.js";
 import Order from "../Moder/orders.js";
-import Booking from "../Moder/bookings.js"; 
+import Booking from "../Moder/bookings.js";
 import Review from "../Moder/services.js";
+
 export const register = async (req, res) => {
   try {
     const { username, password, email, role } = req.body;
@@ -25,7 +26,7 @@ export const register = async (req, res) => {
       email,
       password: hashedPassword,
       apiKey: crypto.randomUUID(),
-      role,
+      role: "user"
     });
 
     res.status(201).json({
@@ -172,8 +173,10 @@ export const getReviews = async (req, res) => {
   try {
     const reviews = await Review.find()
       .populate("userId")
-      .populate("productId");  } catch (error) {
+      .populate("productId");
+  } catch (error) {
     res.status(500).json({
       message: error.message,
     });
-  }}; 
+  }
+}; 
