@@ -5,10 +5,10 @@
   "license": "ISC",
   "author": "",
   "type": "module",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"nodemon index.js\"json-server --watch db.json --port 5000"
+    "dev": "concurrently \"nodemon server.js \"json-server --watch db.json --port 5000\""
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

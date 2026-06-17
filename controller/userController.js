@@ -1,11 +1,8 @@
-import User from "../Moder/User.js";
+import User from "../moder/User.js";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
-import Product from "../Moder/products.js";
-import Category from "../Moder/categories.js";
-import Order from "../Moder/orders.js";
-import Booking from "../Moder/bookings.js";
-import Review from "../Moder/services.js";
+import Booking from "../moder/bookings.js";
+import mongoose from "mongoose";
 
 export const register = async (req, res) => {
   try {
@@ -24,14 +21,17 @@ export const register = async (req, res) => {
     const user = await User.create({
       username,
       email,
-      password: hashedPassword,
       apiKey: crypto.randomUUID(),
+      password: hashedPassword,
       role: "user"
     });
 
+    const userObj = user.toObject();
+    delete userObj.password;
+
     res.status(201).json({
       message: "Đăng ký thành công",
-      user,
+      user: userObj,
     });
   } catch (error) {
     res.status(500).json({
@@ -56,13 +56,11 @@ export const login = async (req, res) => {
       password,
       user.password
     );
-
     if (!isMatch) {
       return res.status(400).json({
         message: "Sai mật khẩu",
       });
     }
-    ;
 
     res.json({
       message: "Đăng nhập thành công",
@@ -74,37 +72,6 @@ export const login = async (req, res) => {
     });
   }
 };
-export const createProduct = async (req, res) => {
-  try {
-    const product = await Product.create(req.body);
-
-    res.status(201).json({
-      message: "Thêm sản phẩm thành công",
-      data: product,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: error.message,
-    });
-  }
-};
-
-
-export const createCategory = async (req, res) => {
-  try {
-    const category = await Category.create(req.body);
-
-    res.status(201).json({
-      message: "Thêm danh mục thành công",
-      data: category,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: error.message,
-    });
-  }
-};
-import mongoose from "mongoose";
 
 export const updatePermissions = async (req, res) => {
   try {
@@ -117,13 +84,15 @@ export const updatePermissions = async (req, res) => {
       });
     }
 
+    const allowedRoles = ["user", "admin"];
+    if (!allowedRoles.includes(role)) {
+      return res.status(400).json({ message: "Role không hợp lệ" });
+    }
+
     const user = await User.findByIdAndUpdate(
       id,
       { role },
-      {
-        new: true,
-        runValidators: true,
-      }
+      { new: true, runValidators: true }
     );
 
     if (!user) {
@@ -142,41 +111,6 @@ export const updatePermissions = async (req, res) => {
     });
   }
 };
-export const getOrders = async (req, res) => {
-  try {
-    const orders = await Order.find()
-      .populate("userId")
-      .populate("products.productId");
 
-    res.json(orders);
-  } catch (error) {
-    res.status(500).json({
-      message: error.message,
-    });
-  }
-};
 
-export const getBookings = async (req, res) => {
-  try {
-    const bookings = await Booking.find()
-      .populate("userId")
-      .populate("serviceId");
 
-    res.json(bookings);
-  } catch (error) {
-    res.status(500).json({
-      message: error.message,
-    });
-  }
-};
-export const getReviews = async (req, res) => {
-  try {
-    const reviews = await Review.find()
-      .populate("userId")
-      .populate("productId");
-  } catch (error) {
-    res.status(500).json({
-      message: error.message,
-    });
-  }
-}; 
