@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const productSchema = new mongoose.Schema(
   {
     code: {
@@ -12,19 +13,22 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
 
-    category: {
-      type: String,
+    categoryId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
       required: true,
     },
 
     price: {
       type: Number,
       required: true,
+      min: [0, "Giá không được nhỏ hơn 0"],
     },
 
-    stock: {
+    quantity: {
       type: Number,
       default: 0,
+      min: [0, "Số lượng không được nhỏ hơn 0"],
     },
 
     brand: {

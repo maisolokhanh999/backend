@@ -6,11 +6,13 @@ const categoriesSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      trim: true,
     },
 
     description: {
       type: String,
       default: "",
+      trim: true,
     },
   },
   {
@@ -18,4 +20,4 @@ const categoriesSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("Category", categoriesSchema);
+export default mongoose.models.Category || mongoose.model("Category", categoriesSchema);
