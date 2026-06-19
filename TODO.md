@@ -1,11 +1,14 @@
 # TODO
 
-## Plan (được duyệt)
-1. Chỉnh `index.js` để đọc Mongo URI từ biến môi trường (MONGODB_URI).
-2. Thay logic connect Mongo:
-   - không `process.exit(1)` ngay khi connect fail
-   - thêm retry (vài lần, có delay)
-3. Sửa lỗi listen port: chỉ gọi `app.listen` 1 lần.
-4. Xác minh app không crash khi Mongo chưa sẵn sàng.
-5. Chạy `npm run dev` để kiểm tra log.
+## Đã hoàn thành
+- [x] Models theo ERD (Users, Categories, Products, Services, Cart, Orders, Reviews, Bookings)
+- [x] CRUD API cho tất cả entities
+- [x] JWT auth thay apiKey
+- [x] Sửa import paths (configs, controller, models)
+- [x] Global error handler + 404 JSON
 
+## Còn lại (optional)
+- [ ] Mongo connect retry thay vì process.exit(1)
+- [ ] CORS whitelist cho frontend URL
+- [ ] Rate limiting
+- [ ] Thêm JWT_SECRET vào .env local nếu chưa có

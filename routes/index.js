@@ -1,8 +1,22 @@
 import express from "express";
-import userRoutes from "./userRoutes.js";
+import authRoutes from "./authRoutes.js";
+import categoryRoutes from "./categoryRoutes.js";
+import productRoutes from "./productRoutes.js";
+import serviceRoutes from "./serviceRoutes.js";
+import cartRoutes from "./cartRoutes.js";
+import orderRoutes from "./orderRoutes.js";
+import reviewRoutes from "./reviewRoutes.js";
+import bookingRoutes from "./bookingRoutes.js";
 
 const router = express.Router();
 
-router.use("/users", userRoutes);
+router.use("/auth", authRoutes);
+router.use("/categories", categoryRoutes);
+router.use("/products", productRoutes);
+router.use("/services", serviceRoutes);
+router.use("/cart", cartRoutes);
+router.use("/orders", orderRoutes);
+router.use("/reviews", reviewRoutes);
+router.use("/bookings", bookingRoutes);
 
 export default router;

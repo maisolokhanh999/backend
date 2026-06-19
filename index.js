@@ -1,12 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import connectDB from "./Configs/db.js";
+import connectDB from "./configs/db.js";
 import routes from "./routes/index.js";
-import dns from "dns/promises";
-dns.setServers(["8.8.8.8", "8.8.4.4"]);
-// Load env before anything else
+
 dotenv.config();
+
+if (!process.env.JWT_SECRET) {
+  process.env.JWT_SECRET = "dev-secret-change-me";
+  console.warn("JWT_SECRET chưa được set — đang dùng giá trị mặc định cho dev");
+}
 
 const app = express();
 
@@ -18,11 +21,20 @@ await connectDB();
 app.use("/api", routes);
 
 app.get("/", (req, res) => {
-    res.send("Server running...");
+  res.json({ message: "Server running..." });
+});
+
+app.use((req, res) => {
+  res.status(404).json({ message: "Route không tồn tại" });
+});
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ message: err.message || "Lỗi server" });
 });
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`🚀 Server running on ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
