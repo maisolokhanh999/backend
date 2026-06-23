@@ -11,7 +11,7 @@ const createToken = (userId) => {
 
 export const register = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Vui lòng nhập đầy đủ thông tin" });
@@ -33,7 +33,7 @@ export const register = async (req, res) => {
       name,
       email: email.toLowerCase(),
       password: hashedPassword,
-      role: role === "admin" ? "admin" : "user",
+      role: "user",
     });
 
     await Cart.create({ userId: user._id, items: [] });
