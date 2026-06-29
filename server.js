@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./configs/db.js";
 import routes from "./routes/index.js";
-
+import cloudinary from "./configs/cloudinary.js";
 dotenv.config();
 
 if (!process.env.JWT_SECRET) {
@@ -15,7 +15,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
+await cloudinary.config();
 await connectDB();
 
 app.use("/api", routes);

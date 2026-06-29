@@ -8,8 +8,9 @@ import orderRoutes from "./orderRoutes.js";
 import reviewRoutes from "./reviewRoutes.js";
 import bookingRoutes from "./bookingRoutes.js";
 import userRoutes from "./userRoutes.js";
+import uploadRoutes from "./uploadRoutes.js";
 const router = express.Router();
-
+router.use("/upload", uploadRoutes);
 router.use("/auth", authRoutes);
 router.use("/categories", categoryRoutes);
 router.use("/products", productRoutes);
